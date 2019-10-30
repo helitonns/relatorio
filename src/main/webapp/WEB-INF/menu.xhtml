@@ -1,0 +1,45 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:sm="http://primefaces.org/sapphire">
+
+    <div id="layout-menu-container" class="layout-menu-container">
+        <div id="layout-nano" class="nano">
+            <div class="nano-content sidebar-scroll-content">
+                <div class="layout-menu-wrapper">
+                    <h:form id="menuform">
+
+                        <sm:menu>
+                            <p:submenu id="m_escolegis" label="Escolegis" icon="&#xE5D2;">
+                                <p:menuitem id="m_relatorio_aluno_listar_editar" value="Listar / Editar Aluno" icon="list" outcome="/pages/relatorio/listar-editar-aluno"/>
+                                <p:menuitem id="m_escolegis_relatorio_geral" value="Relatório Geral" icon="content_paste" outcome="/pages/relatorio/relatorio-geral"/>
+                                <p:menuitem id="m_escolegis_relatorio_matricla" value="Relatório por Matrícula" icon="assignment" outcome="/pages/relatorio/relatorio" />
+                            </p:submenu>
+
+                            <p:submenu id="m_abrincocaminhos" label="Abrindo Caminhos" icon="&#xE5D2;" >
+                                <p:menuitem id="sm_relatorio_aluno_listar_editar" value="Listar / Editar Aluno" icon="list" outcome="/pages/relatorioac/listar-editar-aluno"/>
+                                <p:menuitem id="sm_u_r_aniversariante" value="Aniversariantes" icon="content_paste" outcome="/pages/relatorioac/relatorio-aniversariante"/>
+                                <p:menuitem id="sm_u_r_aniversariante_c_e" value="Aniv. com endereço" icon="assignment" outcome="/pages/relatorioac/relatorio-aniversariante-endereco" style="width: 200px;"/>
+                                <p:menuitem id="sm_u_r_atividade_quantidade" value="Atividades por quantidade" icon="content_paste" outcome="/pages/relatorioac/relatorio-atividade-quantidade"/>
+                                <p:menuitem id="sm_u_r_turma_quantidade" value="Turmas por quantidade" icon="assignment" outcome="/pages/relatorioac/relatorio-turma-quantidade"/>
+                                <p:menuitem id="sm_u_r_bairro" value="Bairros" icon="content_paste" outcome="/pages/relatorioac/relatorio-bairro"/>
+                                <p:menuitem id="sm_r_r_b_quant" value="Bairro por quantidade" icon="assignment" outcome="/pages/relatorioac/relatorio-bairro-quantidade"/>
+                            </p:submenu>
+                            
+                            <p:submenu id="sub_menu_configuracoes_gerais" label="Configurações Gerais" icon="settings" rendered="#{startMB.admin || startMB.superAdmin}">
+                                <p:menuitem id="sm_cg_usuario" value="Usuário" icon="person" outcome="/pages/admin/usuario" rendered="#{startMB.admin || startMB.superAdmin}"/>
+                                <p:menuitem id="sm_cg_sistema" value="Sistemas" icon="settings" outcome="/pages/superadmin/sistema" rendered="#{startMB.superAdmin}"/>
+                                <p:menuitem id="sm_cg_permissao" value="Privilégio" icon="lock" outcome="/pages/superadmin/privilegio" rendered="#{startMB.superAdmin}"/>
+                                <p:menuitem id="sm_cg_autorizacao" value="Autorizações" icon="lock_outline" outcome="/pages/superadmin/autorizacao" rendered="#{startMB.superAdmin}"/>
+                            </p:submenu>
+                        </sm:menu>
+
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ui:composition>
