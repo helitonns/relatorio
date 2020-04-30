@@ -107,23 +107,28 @@
                                     <p:column headerText="Pais" sortBy="#{(var_aluno.genitores.nomeMae != '' and var_aluno.genitores.nomeMae != null) ?  var_aluno.genitores.nomeMae : var_aluno.genitores.nomePai}">
                                         <h:outputText value="#{(var_aluno.genitores.nomeMae != '' and var_aluno.genitores.nomeMae != null) ?  var_aluno.genitores.nomeMae : var_aluno.genitores.nomePai}" />
                                     </p:column>
-                                    <p:column headerText="Bairro" sortBy="#{var_aluno.endereco.bairro.nome}">
-                                        <h:outputText value="#{var_aluno.endereco.bairro.nome}"/>
-                                    </p:column>
+                                    
                                     <p:column headerText="Contato">
                                         <h:outputText value="#{var_aluno.celular}" />
                                         <h:outputText value=" - " rendered="#{(var_aluno.celular != '' and var_aluno.celular != null) and (var_aluno.fixo != '' and var_aluno.fixo != null)}"/>
                                         <h:outputText value="#{var_aluno.fixo}" />
                                     </p:column>
-                                    <p:column headerText="Rua" sortBy="#{var_aluno.endereco.rua}">
-                                        <h:outputText value="#{var_aluno.endereco.rua}"/>
-                                    </p:column>
-                                    <p:column headerText="Rua" sortBy="#{var_aluno.endereco.numero}">
-                                        <h:outputText value="#{var_aluno.endereco.numero}"/>
-                                    </p:column>
+                                    
                                     <p:column headerText="Município" sortBy="#{var_aluno.endereco.bairro.municipio.nome}">
                                         <h:outputText value="#{var_aluno.endereco.bairro.municipio.nome}"/>
                                     </p:column>
+                                    
+                                    <p:column headerText="Bairro" sortBy="#{var_aluno.endereco.bairro.nome}">
+                                        <h:outputText value="#{var_aluno.endereco.bairro.nome}"/>
+                                    </p:column>
+                                    
+                                    <p:column headerText="Rua" sortBy="#{var_aluno.endereco.rua}">
+                                        <h:outputText value="#{var_aluno.endereco.rua}"/>
+                                    </p:column>
+                                    <p:column headerText="N." sortBy="#{var_aluno.endereco.numero}">
+                                        <h:outputText value="#{var_aluno.endereco.numero}"/>
+                                    </p:column>
+                                    
                                     <f:facet name="footer">
                                         Total: #{fn:length(relatorioEspecificoMB.alunos)}
                                     </f:facet>
@@ -139,23 +144,27 @@
                                         <h:outputText value="#{(var_matricula.aluno.genitores.nomeMae != '' and var_matricula.aluno.genitores.nomeMae != null) ?  var_matricula.aluno.genitores.nomeMae : var_matricula.aluno.genitores.nomePai}" />
                                     </p:column>
 
-                                    <p:column headerText="Bairro" sortBy="#{var_matricula.aluno.endereco.bairro.nome}">
-                                        <h:outputText value="#{var_matricula.aluno.endereco.bairro.nome}"/>
-                                    </p:column>
                                     <p:column headerText="Contato">
                                         <h:outputText value="#{var_matricula.aluno.celular}" />
                                         <h:outputText value=" - " rendered="#{(var_matricula.aluno.celular != '' and var_matricula.aluno.celular != null) and (var_matricula.aluno.fixo != '' and var_matricula.aluno.fixo != null)}"/>
                                         <h:outputText value="#{var_matricula.aluno.fixo}" />
                                     </p:column>
-                                    <p:column headerText="Rua" sortBy="#{var_matricula.aluno.endereco.rua}">
-                                        <h:outputText value="#{var_matricula.aluno.endereco.rua}"/>
-                                    </p:column>
-                                    <p:column headerText="Rua" sortBy="#{var_matricula.aluno.endereco.numero}">
-                                        <h:outputText value="#{var_matricula.aluno.endereco.numero}"/>
-                                    </p:column>
+                                    
                                     <p:column headerText="Município" sortBy="#{var_matricula.aluno.endereco.bairro.municipio.nome}">
                                         <h:outputText value="#{var_matricula.aluno.endereco.bairro.municipio.nome}"/>
                                     </p:column>
+                                    
+                                    <p:column headerText="Bairro" sortBy="#{var_matricula.aluno.endereco.bairro.nome}">
+                                        <h:outputText value="#{var_matricula.aluno.endereco.bairro.nome}"/>
+                                    </p:column>
+                                    
+                                    <p:column headerText="Rua" sortBy="#{var_matricula.aluno.endereco.rua}">
+                                        <h:outputText value="#{var_matricula.aluno.endereco.rua}"/>
+                                    </p:column>
+                                    <p:column headerText="N." sortBy="#{var_matricula.aluno.endereco.numero}">
+                                        <h:outputText value="#{var_matricula.aluno.endereco.numero}"/>
+                                    </p:column>
+                                    
                                     <f:facet name="footer">
                                         Total: #{fn:length(relatorioEspecificoMB.matriculas)}
                                     </f:facet>
