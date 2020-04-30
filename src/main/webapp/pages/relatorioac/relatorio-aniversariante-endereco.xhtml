@@ -12,7 +12,7 @@
     <ui:define name="breadcrumb">
         <li>Páginas</li>
         <li>/</li>
-        <li><p:link outcome="/pages/relatorioac/relatorio-aniversariante-endereco">Relatório aniversariantes com endereço</p:link></li>
+        <li><p:link outcome="/pages/relatorioac/relatorio-aniversariante-endereco">Relatório - Pais aniversariantes</p:link></li>
     </ui:define>
 
     <ui:define name="content">
@@ -21,7 +21,7 @@
 
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <label class="overview-numbers" style="color: #ff9800;font-size: 30px">Relatório Aniversariantes com endereço - Abrindo Caminhos</label>
+                    <label class="overview-numbers" style="color: #ff9800;font-size: 30px">Relatório - Pais aniversariantes - Abrindo Caminhos</label>
                     <div class="card card-w-title" style="margin-top: 5px">
 
                         <p:messages globalOnly="true" closable="true"/>
@@ -101,14 +101,14 @@
                                 <p:dataTable id="tbl_aluno" var="var_aluno" value="#{relatorioEspecificoMB.alunos}" rendered="#{relatorioEspecificoMB.exibirTabelaAluno}" reflow="true" paginator="true" rows="10" emptyMessage=" ">
                                     <p:column headerText="Data de Aniversário" sortBy="#{(var_aluno.genitores.dataNascimentoMae != '' and var_aluno.genitores.dataNascimentoMae != null) ?  var_aluno.genitores.dataNascimentoMae : var_matricula.aluno.genitores.dataNascimentoPai}">
                                         <h:outputText value="#{(var_aluno.genitores.dataNascimentoMae != '' and var_aluno.genitores.dataNascimentoMae != null) ?  var_aluno.genitores.dataNascimentoMae : var_aluno.genitores.dataNascimentoPai}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            <f:convertDateTime pattern="dd/MM"/>
                                         </h:outputText>
                                     </p:column>
                                     <p:column headerText="Pais" sortBy="#{(var_aluno.genitores.nomeMae != '' and var_aluno.genitores.nomeMae != null) ?  var_aluno.genitores.nomeMae : var_aluno.genitores.nomePai}">
                                         <h:outputText value="#{(var_aluno.genitores.nomeMae != '' and var_aluno.genitores.nomeMae != null) ?  var_aluno.genitores.nomeMae : var_aluno.genitores.nomePai}" />
                                     </p:column>
                                     
-                                    <p:column headerText="Contato">
+                                    <p:column headerText="Telefone">
                                         <h:outputText value="#{var_aluno.celular}" />
                                         <h:outputText value=" - " rendered="#{(var_aluno.celular != '' and var_aluno.celular != null) and (var_aluno.fixo != '' and var_aluno.fixo != null)}"/>
                                         <h:outputText value="#{var_aluno.fixo}" />
@@ -125,8 +125,11 @@
                                     <p:column headerText="Rua" sortBy="#{var_aluno.endereco.rua}">
                                         <h:outputText value="#{var_aluno.endereco.rua}"/>
                                     </p:column>
-                                    <p:column headerText="N." sortBy="#{var_aluno.endereco.numero}">
+                                    <p:column headerText="Nº" sortBy="#{var_aluno.endereco.numero}">
                                         <h:outputText value="#{var_aluno.endereco.numero}"/>
+                                    </p:column>
+                                    <p:column headerText="CEP" sortBy="#{var_aluno.endereco.cep}">
+                                        <h:outputText value="#{var_aluno.endereco.cep}"/>
                                     </p:column>
                                     
                                     <f:facet name="footer">
@@ -137,14 +140,14 @@
                                 <p:dataTable id="tbl_matricula" var="var_matricula" value="#{relatorioEspecificoMB.matriculas}" rendered="#{relatorioEspecificoMB.exibirTabelaMatricula}" reflow="true" paginator="true" rows="10" emptyMessage=" ">
                                     <p:column headerText="Data de Aniversário" sortBy="#{(var_matricula.aluno.genitores.dataNascimentoMae != '' and var_matricula.aluno.genitores.dataNascimentoMae != null) ?  var_matricula.aluno.genitores.dataNascimentoMae : var_matricula.aluno.genitores.dataNascimentoPai}">
                                         <h:outputText value="#{(var_matricula.aluno.genitores.dataNascimentoMae != '' and var_matricula.aluno.genitores.dataNascimentoMae != null) ?  var_matricula.aluno.genitores.dataNascimentoMae : var_matricula.aluno.genitores.dataNascimentoPai}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            <f:convertDateTime pattern="dd/MM"/>
                                         </h:outputText>
                                     </p:column>
                                     <p:column headerText="Pais" sortBy="#{(var_matricula.aluno.genitores.nomeMae != '' and var_matricula.aluno.genitores.nomeMae != null) ?  var_matricula.aluno.genitores.nomeMae : var_matricula.aluno.genitores.nomePai}">
                                         <h:outputText value="#{(var_matricula.aluno.genitores.nomeMae != '' and var_matricula.aluno.genitores.nomeMae != null) ?  var_matricula.aluno.genitores.nomeMae : var_matricula.aluno.genitores.nomePai}" />
                                     </p:column>
 
-                                    <p:column headerText="Contato">
+                                    <p:column headerText="Telefone">
                                         <h:outputText value="#{var_matricula.aluno.celular}" />
                                         <h:outputText value=" - " rendered="#{(var_matricula.aluno.celular != '' and var_matricula.aluno.celular != null) and (var_matricula.aluno.fixo != '' and var_matricula.aluno.fixo != null)}"/>
                                         <h:outputText value="#{var_matricula.aluno.fixo}" />
@@ -161,8 +164,11 @@
                                     <p:column headerText="Rua" sortBy="#{var_matricula.aluno.endereco.rua}">
                                         <h:outputText value="#{var_matricula.aluno.endereco.rua}"/>
                                     </p:column>
-                                    <p:column headerText="N." sortBy="#{var_matricula.aluno.endereco.numero}">
+                                    <p:column headerText="Nº" sortBy="#{var_matricula.aluno.endereco.numero}">
                                         <h:outputText value="#{var_matricula.aluno.endereco.numero}"/>
+                                    </p:column>
+                                    <p:column headerText="CEP" sortBy="#{var_matricula.aluno.endereco.cep}">
+                                        <h:outputText value="#{var_matricula.aluno.endereco.cep}"/>
                                     </p:column>
                                     
                                     <f:facet name="footer">
