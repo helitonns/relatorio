@@ -77,7 +77,14 @@ public class StartMB implements Serializable {
                 usuario = usuarioDAO.pesquisarPorLoginESenha(login, Criptografia.criptografarEmMD5(senha));
                 FacesUtils.setBean("usuario", usuario);
                 FacesUtils.setBean("autorizacao", autorizacao);
-                return "/pages/relatorio/relatorio-geral.xhtml" + "?faces-redirect=true";
+
+                if (usuario.getNome() == null || usuario.getMatricula() == null) {
+                    FacesUtils.addWarnMessageFlashScoped("O usuário está com o nome ou matrícula não preenchidos. Complete o seu perfil!");
+                    return "/pages/relatorio/perfil.xhtml" + "?faces-redirect=true";
+                } else {
+                    return "/pages/relatorio/relatorio-geral.xhtml" + "?faces-redirect=true";
+                }
+                
             } else {
                 FacesUtils.addErrorMessageFlashScoped("Usuário e/ou senha incorreto");
             }
