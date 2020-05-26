@@ -117,7 +117,7 @@
 
                                     <p:column headerText="Ação" style="width: 250px;">
                                         <h:panelGrid columns="2">
-                                            <p:commandButton value="Editar"  icon="ui-icon-edit" ajax="true" update="form" style="width: 100%;"  action="#{usuarioMB.prepararEdicao()}">
+                                            <p:commandButton value="Editar"  icon="ui-icon-edit" ajax="true" update="form" style="width: 100%;">
                                                 <f:setPropertyActionListener value="#{autorizacao_var}" target="#{usuarioMB.autorizacao}"/>
                                                 <f:setPropertyActionListener value="#{autorizacao_var.usuario}" target="#{usuarioMB.usuario}"/>
                                                 <f:setPropertyActionListener value="#{autorizacao_var.privilegio.id}" target="#{usuarioMB.idPermissao}"/>

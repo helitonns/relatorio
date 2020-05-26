@@ -56,7 +56,7 @@ public class UsuarioMB implements Serializable {
 
     private Long idUS = 0l;
     private Long idPermissao = 0l;
-
+    
     //==========================================================================
     @PostConstruct
     public void init() {

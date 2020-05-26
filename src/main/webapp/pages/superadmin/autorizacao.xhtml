@@ -39,7 +39,7 @@
                             
                             
                             <div class="ui-g-12 ui-md-4">
-                                <p:selectOneMenu id="idSelectUsuario" value="#{autorizacaoMB.idUsuario}" required="true" requiredMessage="Campo obrigatório" style="margin-top: 10px;">
+                                <p:selectOneMenu id="idSelectUsuario" value="#{autorizacaoMB.idUsuario}" required="true" requiredMessage="Campo obrigatório" style="margin-top: 10px;" disabled="#{autorizacaoMB.editandoUsuario}">
                                     <f:selectItem itemLabel="Selecione o usuário" noSelectionOption="true"/>
                                     <f:selectItems value="#{autorizacaoMB.usuarios}" var="varUsuario" itemValue="#{varUsuario.id}" itemLabel="#{varUsuario.login}" />
                                 </p:selectOneMenu>
@@ -115,6 +115,7 @@
                                                 <f:setPropertyActionListener value="#{autorizacao_var.usuario.id}" target="#{autorizacaoMB.idUsuario}"/>
                                                 <f:setPropertyActionListener value="#{autorizacao_var.privilegio.sistema.id}" target="#{autorizacaoMB.idSistema}"/>
                                                 <f:setPropertyActionListener value="#{autorizacao_var.privilegio.id}" target="#{autorizacaoMB.idPermissao}"/>
+                                                <f:setPropertyActionListener value="#{true}" target="#{autorizacaoMB.editandoUsuario}"/>
                                             </p:commandButton>
                                             <p:commandButton value="Excluir" icon="ui-icon-cancel"  style="width: 100%" styleClass="red-btn" actionListener="#{autorizacaoMB.setAutorizacao(autorizacao_var)}" onclick="PF('modal_excluir').show();"/>
                                         </h:panelGrid>

@@ -15,6 +15,8 @@ import br.leg.alrr.relatorio.util.DAOException;
 import br.leg.alrr.relatorio.util.FacesUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -43,7 +45,7 @@ public class AutorizacaoMB implements Serializable {
 
     @EJB
     private UsuarioDAO usuarioDAO;
-    
+
     @EJB
     private UnidadeDAO unidadeDAO;
 
@@ -61,6 +63,7 @@ public class AutorizacaoMB implements Serializable {
     private Long idUnidade;
 
     private boolean removerAutorizacao;
+    private boolean editandoUsuario;
 
     //==========================================================================
     @PostConstruct
@@ -100,6 +103,10 @@ public class AutorizacaoMB implements Serializable {
     public void listarPermissoesPorSistema(Long id) {
         try {
             permissoes = (ArrayList<Privilegio>) permissaoDAO.listarTodosAtivosPeloSistema(new Sistema(id));
+            
+            if (editandoUsuario) {
+                listandoUsuáriosParaEditar();
+            }
         } catch (DAOException e) {
             FacesUtils.addErrorMessage(e.getMessage());
         }
@@ -110,7 +117,7 @@ public class AutorizacaoMB implements Serializable {
             String[] s = FacesUtils.getURL().split("/");
             ArrayList<Usuario> usuariosDoSistema = (ArrayList<Usuario>) autorizacaoDAO.listarUsuariosQueTemPermissaoNoSistema(s[1]);
             ArrayList<Usuario> todosUsuariosAtivos = (ArrayList<Usuario>) usuarioDAO.listarTodosAtivos();
-            
+
             for (Usuario u : todosUsuariosAtivos) {
                 boolean encontrou = false;
                 for (Usuario u2 : usuariosDoSistema) {
@@ -123,9 +130,18 @@ public class AutorizacaoMB implements Serializable {
                     usuarios.add(u);
                 }
             }
-            
+
         } catch (DAOException e) {
             FacesUtils.addErrorMessage(e.getMessage());
+        }
+    }
+
+    public void listandoUsuáriosParaEditar() {
+        try {
+            String[] s = FacesUtils.getURL().split("/");
+            usuarios = (ArrayList<Usuario>) autorizacaoDAO.listarUsuariosQueTemPermissaoNoSistema(s[1]);
+        } catch (DAOException ex) {
+            Logger.getLogger(AutorizacaoMB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -137,7 +153,7 @@ public class AutorizacaoMB implements Serializable {
             FacesUtils.addErrorMessage(e.getMessage());
         }
     }
-    
+
     private void listarUnidades() {
         try {
             unidades = (ArrayList<Unidade>) unidadeDAO.listarTodos();
@@ -197,6 +213,7 @@ public class AutorizacaoMB implements Serializable {
         autorizacao.setStatus(true);
 
         removerAutorizacao = false;
+        editandoUsuario = false;
         listarAutorizacoes();
     }
 
@@ -273,5 +290,11 @@ public class AutorizacaoMB implements Serializable {
         return unidades;
     }
 
-    
+    public boolean isEditandoUsuario() {
+        return editandoUsuario;
+    }
+
+    public void setEditandoUsuario(boolean editandoUsuario) {
+        this.editandoUsuario = editandoUsuario;
+    }
 }
